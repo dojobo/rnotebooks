@@ -1,0 +1,167 @@
+---
+title: "R Notebooks"
+author: "Dominic Bordelon, University Library System"
+date: "March 20, 2023"
+format: html
+editor: visual
+---
+
+## Agenda
+
+1.  About the presenter
+2.  File types in R
+3.  Markup languages, Markdown, YAML
+4.  RMarkdown (.Rmd) and Quarto (.qmd)
+5.  Rich text features
+6.  Rendering aka knitting
+7.  Quarto slides
+8.  Jupyter Notebooks vs. RNotebooks
+
+## About the presenter
+
+Dominic Bordelon, Research Data Librarian
+
+## Suggestion: update R + RStudio
+
+R and RStudio are both under very active development, and RNotebooks is where a lot of the new features are!
+
+If your features don't exactly match what I show, try updating your installations. (Of course, I might also be behind!)
+
+## File types in R
+
++-----------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Name            | Extension | Notes                                                                                                                                                  |
++=================+===========+========================================================================================================================================================+
+| R script        | `.R`      | -   Only R code (and \# comments)                                                                                                                      |
+|                 |           | -   Runnable from command line                                                                                                                         |
+|                 |           | -   Good for: functions you will reuse; packages; scripts for automation                                                                               |
++-----------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| R notebook      | `.Rmd`    | -   Rich hypertext, images, executable code blocks                                                                                                     |
+|                 |           | -   Utilized in RStudio                                                                                                                                |
+|                 |           | -   Good for: embedding code and plots in documents (or: narrating code and plots); producing multiple formats from one source (e.g., html, docx, pdf) |
++-----------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quarto document | `.qmd`    | -   Newest iteration of R notebooks                                                                                                                    |
+|                 |           | -   "Quarto" rebranding represents sunsetting of Rmd                                                                                                   |
+|                 |           | -   Few changes to syntax                                                                                                                              |
+|                 |           | -   Adds new features and output formats                                                                                                               |
+|                 |           | -   Development has been rapid                                                                                                                         |
+|                 |           | -   Good for: everything Rmd does + slides                                                                                                             |
++-----------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Other R file types, which are *not* notebooks: `.RData, .RProject, .RDS`
+
+## Markup languages
+
+-   "Marking up" a text document with structure $\rightarrow$ markup language
+-   The most famous: HTML (hypertext markup language), `.html` files
+-   The most widespread: XML (extensible markup language), `.xml` files
+-   ...but they are unpleasant to read and write in
+
+![A markup language (XML schema) for recipes.](images/RecipeBook_XML_Example.png){fig-align="center"}
+
+## Markdown
+
+Markdown replaces this:
+
+``` {{html}}
+<h2>Background</h2>
+<ul>
+  <li>Item one</li>
+  <li>Item two at <a href="https://pitt.edu/">Pitt</a></li>
+  <li>Item three</li>
+</ul>
+```
+
+With this:
+
+``` {{md}}
+## Background
+
+* Item one
+* Item two at [https://pitt.edu/](Pitt)
+* Item three
+```
+
+Convenient!
+
+Markdown is used on Wikipedia and GitHub. Usually it has the file extension `.md`. The classic reference for generic Markdown is [Daring Fireball](https://daringfireball.net/projects/markdown/). [GitHub's markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) also has its own features and is called "GitHub Flavored Markdown."
+
+## YAML (Yet Another Markup Language)
+
+(or "YAML Ain't a Markup Language")
+
+-   [structured]{.underline} information with minimal markup
+-   YAML is often used for configuration
+-   In RNotebooks, YAML is the formatting you see in headers.
+-   Protip: if you get an error that mentions YAML, check your notebook header for typos
+-   Curious about YAML? More at [yaml.org](https://yaml.org/)
+
+## RMarkdown (.Rmd) and Quarto documents (.qmd)
+
+RMarkdown is Markdown plus special features for R. And Quarto is the newest iteration of RMarkdown. It's a rebranding in part to reflect a broader user base---you can also run Python and Julia code in RNotebooks---but it also has newer features over the previous RMarkdown. Slides are especially well developed.
+
+RMarkdown's key feature is code chunks (aka code blocks). A code chunk is a "fenced" area---delimited with three backticks ```` ``` ````---in the markdown document which will get interpreted as R code, and can be executed.
+
+Here is what a code chunk looks like:
+
+```{r}
+# R code goes here
+```
+
+Clicking ▶ at top right of the chunk will run it and display the results directly below. If you change the code and run it again, there will be new results. It's like a miniature script. But all chunks in the same notebook share the same environment.
+
+You can run a single line with Ctrl+Enter (Windows) / Cmd+Enter (Mac).
+
+## Rich text features
+
+You can use these easily in Visual editing mode.
+
+-   Headings, **bold**, *italics*, [underline]{.underline}, `code`, ~~strikeout~~, [Small Caps]{.smallcaps}
+-   Lists (outlines)
+-   Inline LaTeX: $H' = \sum\limits_{i=1}^{R}p_i\ln p_i$
+-   Display LaTeX:
+
+$$
+H' = \sum\limits_{i=1}^{R}p_i \ln p_i
+$$
+
+-   Hypertext
+-   Images
+    -   Features for captions and layout (e.g., side-by-side, grid), alignment, size
+-   Tables (I've used one above)
+-   HTML (you can generally put it in---it is permitted in markdown)
+
+## Rendering aka knitting
+
+When we "render" or "knit" an RNotebook, it means to compile it into some other (usually rich) format---Word Doc, PDF, etc---as well as run the R code in the notebook and display its results in the final file. The application that RMarkdown/Quarto uses for this is called [Pandoc](https://pandoc.org/). (It can convert between many formats, and is available as a standalone app.)
+
+You can choose which format(s) a notebook will render in its header, and press the Render button to process it. In case more than one format is specified, you'll also get a caret menu.
+
+Example document: authoring.qmd
+
+## Quarto Slides
+
+-   Try File \> New \> Quarto Presentation...
+-   or change/add one of these formats to your notebook YAML header: `revealjs, pptx, beamer`
+-   revealjs is a JavaScript library for making browser-based slideshows
+-   pptx is PowerPoint
+-   beamer is a popular LaTeX package for making PDF slides
+
+*But how?*
+
+-   Every h2 becomes a new slide with that title
+-   Or to make a new slide without a title, use a horizontal rule
+
+Example file: index.qmd
+
+## Jupyter Notebooks vs. RNotebooks
+
+-   Can you do all the same stuff in one as in the other?
+    -   Coding---yes, in 3 languages
+    -   Document/presentation production---probably fewer features in Jupyter, but the important ones are there for reproducibility and legibility.
+-   Technical differences
+    -   Jupyter runs as a server and provides a web-based environment
+
+    -   (I prefer RStudio as a desktop client, rather than a browser-based IDE, but this is my preference)
+
+    -   Jupyter notebooks can run on GitHub

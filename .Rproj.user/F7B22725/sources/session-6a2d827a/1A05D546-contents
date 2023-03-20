@@ -1,0 +1,131 @@
+---
+title: "How to Name and Organize Your Project Files"
+author: "Dominic Bordelon, University Library System"
+date: "February 17, 2023"
+format:
+  docx: default
+  revealjs:
+    self-contained: true
+    scrollable: true
+    footer: "How to Name and Organize Your Project Files"
+    logo: "images/ULS_logo1.png"
+editor: visual
+---
+
+## Agenda
+
+1.  About the presenter
+2.  Calendar dates
+3.  Characters to avoid (and why)
+4.  The pieces of a file name, and how to combine them
+5.  Directories as collections, and sorting our laundry
+
+## About the presenter {.smaller}
+
+Dominic Bordelon, Research Data Librarian\
+Hillman Library, University Library System, University of Pittsburgh\
+[dbordelon\@pitt.edu](mailto:dbordelon@pitt.edu)
+
+Areas of support:
+
+-   research data management: data management plans; practices for reproducibility and Open scholarship (OA, free open source software, Data Sharing, etc.)
+-   code/software support for researchers: R and Python, Git
+
+Services:
+
+-   consultations ([book an appointment](https://pitt.libcal.com/appointments/research_data_librarian))
+-   presentations and workshops for the Pitt community
+-   presentations, workshops/trainings on requests for classes, lab groups, and ad hoc groups
+
+## Calendar dates
+
+ISO 8601 is the international standard for writing dates:
+
+**`YYYY-MM-DD`**
+
+So today is:
+
+**`2023-02-17`**
+
+It can also be written without hyphens: **`20230217`**
+
+Advantages:
+
+-   Sorts correctly (in ways that other formats do not: "`09/20/22`" sorts before "`10/20/21`"; "`September 20, 2022`" sorts after "`November 20, 2022`"; and so on)
+-   Unambiguous internationally, as year must come first; language-agnostic
+-   Fixed format/width makes it very predictable in automation contexts
+
+Use this *anywhere* you store a date! (Tools are available for displaying dates in more user-friendly formats.)
+
+With time (may or may not include timezone offset):\
+`2023-02-17T18:00:00-5:00`
+
+## Characters to avoid {.smaller}
+
+`` ~ ` ? ! @ # $ % ^ & * + = ' " \ / , ; : ``
+
+**Acceptable characters:**\
+`-` (hyphen) --- my favorite!\
+`_` (underscore)\
+`.` (period)
+
+**Acceptable but not recommended:**\
+spaces\
+alpha characters outside the ASCII range\
+capitalization (except where it's very intentional)
+
+**Why?**
+
+-   Operation system limitations (some are reserved characters)
+-   Ease of command-line access
+    -   File paths containing space characters must be enclosed in quotation marks " "
+    -   Forgoing spaces $\rightarrow$ thanking yourself for easy file names!
+-   HTTP limitations
+    -   Space becomes `%20` or `+` depending on context
+-   Re: capitalization, it's one less thing to remember when you need to recall a file name
+    -   *Never* rely on case sensitivity to distinguish two files. If you have `a.txt`, you should not also have `A.txt` in the same directory!
+
+## The pieces of a file name, and how to combine them {.smaller}
+
+When creating a file, consider whether similar files already exist in the directory, and how they are named. (If you name File B starting similarly to File A, they will sort together.)
+
+A word separator like `_` or `-` is more readable than "camel case," e.g., `preliminary-analysis-bordelon.dat` rather than `PreliminaryAnalysisBordelon.dat`
+
+When naming, consider how you want sorting to work in this directory.
+
+-   Ex. `photo_control_20220920_djb.jpg` will put all control-group photos together, followed by the date
+-   Ex. `photo_20220920_control_djb.jpg` will put all of each day's photos together, followed by the treatment group
+-   Does the user `djb` have their own `control` group in contrast to others? If yes, you *might* move their initials earlier to collocate all of their observations.
+
+Kristen A. Briney's [File Naming Convention Worksheet](https://authors.library.caltech.edu/103626/) is a fantastic procedure for creating a scheme. Once you walk through it, you should have a clear idea of how to name the type of file in question.
+
+## Directories as collections, and sorting our laundry {.smaller}
+
+We can make a directory for each collection identified in our file naming exercise.
+
+In the project root directory, we can consider each file in turn, and decide whether it should belong in a subdirectory, and then in which it should belong (of existing directories), or whether a new directory needs to be created for this type of file.
+
+Organizational schemas to consider:
+
+-   Chronological (project lifecycle)---consider starting directory names with numbers (e.g., `01_data_collection`, `02_data_cleaning`, etc.)
+-   Topic-based, esp. if there are multiple methods/literatures (e.g., population ecology, environmental science)
+-   Type of file or type of thing (e.g., `images`, `data`, `data/processed`, `data/raw`, etc.)
+
+More tips:
+
+-   Try to avoid "miscellaneous" categories and/or allowing the root directory to become too cluttered
+-   For ongoing work that might produce multiple outputs ( = posters, talks, papers, etc.), consider a sub-directory for each output as it is conceived
+-   For an output which you might iterate over, consider "releases" or numbered versions (1.0, 2.0, etc.)
+-   Protect raw data! Keep it in its own directory; never process it directly but rather a copy.
+-   In collaborative contexts, for a given user, consider whether the *local* level of access and permissions are appropriate to the role/responsibilities of the user in question. "\[M\]ake sure that each person and each process has only the level of access they require to do their job." ([Preston 2022](https://learning.oreilly.com/library/view/modern-data-protection/9781492094043/))
+
+## Want to chat about your files?
+
+Reach out! [dbordelon\@pitt.edu](mailto:dbordelon@pitt.edu) or book an appointment at <https://pitt.libcal.com/appointments/research_data_librarian>.
+
+Health Sciences researchers: consult with the Health Sciences Library System, Data Services: <https://www.hsls.pitt.edu/data-services/contact>
+
+## References
+
+-   Briney, Kristin A. "The Problem with Dates: Applying ISO 8601 to Research Data Management." *Journal of EScience Librarianship* 7, no. 2 (September 6, 2018): e1147. <https://doi.org/10.7191/jeslib.2018.1147>.
+-   Preston, W. *Modern Data Protection*. 1st edition. O'Reilly Media, Inc., 2022.

@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+tasks <- read_excel("ithaka-dates.xlsx")
+tasks <- tasks %>% 
+  mutate(start = as.Date(start), end = as.Date(end))
+tasks %>% 
+  gather(key=date_type, value=date, -task, -owner) %>% 
+  ggplot(aes(x=fct_rev(fct_inorder(task)), y=date, color=owner)) +
+  geom_line(linewidth=10) +
+  coord_flip() +
+  labs(title="Ithaka Data Services project",
+       x="Task", y="Date") +
+  theme_minimal()
+```
